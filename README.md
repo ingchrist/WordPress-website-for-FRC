@@ -50,4 +50,4 @@ We've got a [quick guide](https://github.com/duchenerc/artificial-intelligence/w
 
 ## Development
 
-For information on the development environment, check out [the page in the wiki](https://github.com/duchenerc/artificial-intelligence/wiki/Development-Environment).
+For information on the development environment, check out
