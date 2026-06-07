@@ -1,0 +1,79 @@
+
+// MODULE: PLATE
+// A simple, three-column-wide block used to display
+// non-standard post formats.
+// Options:
+//   icon   Slug of the genericon to use
+//
+@mixin ai-plate($sel: &, $opts...)
+{
+	$args: keywords($opts);
+	
+	padding: 2.5rem 0;
+	@extend %ai-rhythm;
+	background-color: color(dbg);
+	
+	> .cc
+	{
+		@extend %row;
+	}
+	
+	.icon
+	{
+		@extend %col-rock-1;
+		display: none;
+		
+		@include above(punk)
+		{
+			display: block;
+		}
+		
+		@if map-has-key($args, icon)
+		{
+			@extend %genericon-#{map-find($args, icon)};
+		}
+		
+		font-size: 2rem;
+		color: color(dh);
+		
+	}
+	
+	.meta
+	{
+		@extend %hide-pop;
+		@extend %show-punk;
+		@extend %col-punk-4;
+		
+		@include scale(1);
+		@extend %font-heading;
+		color: color(dfg);
+		
+		li a
+		{
+			color: color(dh);
+		}
+		
+	}
+	
+	.content
+	{
+		@extend %col-pop-12;
+		@extend %col-punk-6;
+		
+		&-title
+		{
+			@extend %font-heading;
+			@include scale(3);
+			color: color(dh);
+			
+			@include above(punk)
+			{
+				display: none;
+			}
+		}
+		
+		@extend %font-lead;
+		color: color(dfg);
+	}
+	
+}

@@ -1,0 +1,71 @@
+
+// SELECTOR: HEADER
+//
+#header
+{
+	@include ai-navbar(".header", $custom-layout: true, $header-sep: ".header-sep");
+	
+	.number a
+	{
+		background-color: color(chribg);
+		color: color(chrifg);
+	}
+	
+	@include below(disco)
+	{
+		.number
+		{
+			margin-left: auto;
+		}
+	}
+	
+}
+
+// SELECTOR: SEARCH FROM NAV
+// Drops down from navigation.
+//
+#nav-search
+{
+	display: none;
+	
+	&-input
+	{
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+			  -ms-appearance: none;
+		        appearance: none;
+		
+		border: 0;
+		margin: 0;
+		padding: 0.45em;
+		width: 100%;
+		font-size: scale(1);
+		
+		@extend %font-heading;
+		background-color: color(chribg);
+		color: color(chrifg);
+	}
+}
+
+// SELECTOR: OFFCANVAS MENUS
+// Use CSS transforms to move. Triggered by a JavaScript class toggle.
+//
+#nav-offcanvas-left
+{
+	@include ai-offcanvas(&, $side: left);
+}
+
+#nav-offcanvas-right
+{
+	@include ai-offcanvas(&, $side: right);
+}
+
+// SELECTOR: TOGGLE MOBILE NAVIGATION
+//
+@include above(disco)
+{
+	.nav-mobile-toggle
+	{
+		display: none;
+	}
+}

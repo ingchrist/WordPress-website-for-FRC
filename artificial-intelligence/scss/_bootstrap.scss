@@ -1,0 +1,79 @@
+// BOOTSTRAP
+// Bootstraps Sass pipeline.
+//
+//
+// CONFIG: BASE FONT SIZE
+// The base font size, used as the size of the body text.
+// This should be set in pixels.
+//
+$config-font-size: 20px !default;
+
+// CONFIG: BASE LINE HEIGHT
+// The base line-height, applied to body text.
+// This should be set in pixels, as the base font size plus spacing.
+//
+$config-line-height: 30px !default;
+
+// CONFIG: MOBILE FONT SIZE
+// Font size to use for smaller viewports.
+// Set in pixels.
+//
+$config-font-size-mobile: 16px !default;
+
+// CONFIG: MOBILE LINE HEIGHT
+// The line-height used for smaller viewports.
+// Set in pixels.
+//
+$config-line-height-mobile: 24px !default;
+
+// CONFIG: FONT SCALE MULTIPLIER
+// Defines the scale used when multiplying font sizes.
+// Set as unitless value.
+//
+$config-multiplier: 1.25 !default;
+
+// CONFIG: CONTAINER WIDTH
+// Defines the width of the primary container, affecting the amount of margin
+// to the left and right of the main content.
+// Set as percentage.
+//
+$config-cc-width: 95% !default;
+
+// CONFIG: CONTAINER MAX-WIDTH
+// Defines the maximum width of the primary container, affecting the screen
+// size at which the container will stop growing.
+// Set in pixels.
+//
+$config-cc-max-width: 1250px !default;
+
+// CONFIG: ARTICLE CONTAINER WIDTH
+// Defines the width of the article container.
+// Set in pixels.
+//
+$config-cc-article: 600px !default;
+
+// CONFIG: BREAKPOINTS
+// Defines the places (screen-width) where the layout adjusts to fit the
+// viewports of smaller devices.
+//
+$config-breaks: (
+	pop:   1px,     // smartphones
+	rock:  768px,   // tablets
+	punk:  992px,   // small desktops/laptops
+	disco: 1200px,  // large desktops/laptops
+) !default;
+
+// CONFIG: RHYTHM DEBUG
+// Outputs a baseline grid corresponding to the line-height.
+// Useful for debugging issues with vertical rhythm.
+//
+$config-rhythm-debug: false !default;
+
+
+// FRAMEWORK IMPORT
+//
+@import "framework/index";
+
+// MODULES
+//
+@import "modules/index";

@@ -1,0 +1,101 @@
+
+// SET COLORS
+// Set color variables for base colors.
+// Keep in mind that these should be good color names.
+// http://chir.ag/projects/name-that-color/
+//
+// $lightning: #fd0;
+$mineshaft: #222;
+$gallery: #eee;
+$edge: #6ff;
+
+// BASE COLORS
+// Set base colors. Use the color variables set above.
+// Find documentation in app/assets/scss/framework/themes/_colors.scss
+//
+$colors: (
+	lfg:    $mineshaft,
+	lbg:    $gallery,
+	la:     lighten($mineshaft, 40%),
+	lh:     lighten($mineshaft, 20%),
+	lac:    lighten($mineshaft, 40%),
+
+	dfg:    darken($gallery, 15%),
+	dbg:    $mineshaft,
+	da:     $edge,
+	dh:     $edge,
+	dac:    darken($gallery, 40%),
+
+	chrfg:  darken($gallery, 15%),
+	chrbg:  transparentize($mineshaft, 0.4),
+	chra:   transparentize($mineshaft, 0.2),
+	chrh:   $edge,
+	chrac:  lighten($mineshaft, 40%),
+
+	chrifg: $mineshaft,
+	chribg: $edge,
+);
+
+// SET FONTS
+// Set font stacks.
+// Use the name of the first font as the variable name.
+//
+// $fhelvetica:              'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $fopensans:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $flato:      'Lato',      'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $fraleway:   'Raleway',   'Helvetica Neue', Helvetica, Arial, sans-serif;
+$froboto:                    'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $frobotoslab: 'Roboto Slab', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fsourcecodepro: "Source Code Pro", Menlo, Monaco, Courier, monospace;
+
+// FONTS
+// Set base fonts. Use the font variables set above.
+// These maps will be converted to %selectors that you can @extend.
+// (e.g., @extend %font-title)
+//
+$fonts: (
+	title: (
+		font-family: $froboto,
+		font-weight: 100,
+	),
+	heading: (
+		font-family: $froboto,
+		font-weight: 300,
+	),
+	lead: (
+		font-family: $froboto,
+		font-weight: 300,
+	),
+	body: (
+		font-family: $froboto,
+		font-weight: 300,
+	),
+	main: (
+		font-family: $froboto,
+		font-weight: 300,
+	),
+	bold: (
+		font-weight: 500,
+	),
+	italic: (
+		font-style: italic,
+	),
+	mono: (
+		font-family: $fsourcecodepro,
+	),
+);
+
+// FONTS-IMPORT
+// If you need to, import fonts from Google Fonts.
+// Give the font's name and what styles you need.
+//
+$fonts-import: (
+	"Roboto": "100" "200" "300" "500" "300italic" "500italic",
+	"Source Code Pro": "400" "400italic" "700" "700italic",
+	// "Roboto Slab": "300",
+);
+
+// EXPORT
+//
+@import "bootstrap";
+@import "export";

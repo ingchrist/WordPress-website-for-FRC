@@ -1,0 +1,100 @@
+
+// SET COLORS
+// Set color variables for base colors.
+// Keep in mind that these should be good color names.
+// http://chir.ag/projects/name-that-color/
+//
+// $lightning: #fd0;
+$mineshaft: #222;
+$cappy: #39f;
+$gallery: #eee;
+$white: #fff;
+
+
+// BASE COLORS
+// Set base colors. Use the color variables set above.
+// Find documentation in app/assets/scss/framework/themes/_colors.scss
+//
+$colors: (
+	lfg:    $mineshaft,
+	lbg:    $gallery,
+	la:     $cappy,
+	lh:     $cappy,
+	lac:    $cappy,
+	
+	dfg:    $gallery,
+	dbg:    $mineshaft,
+	da:     $cappy,
+	dh:     $cappy,
+	dac:    $cappy,
+	
+	chrfg:  $mineshaft,
+	chrbg:  transparentize($gallery, 0.15),
+	chra:   transparentize($gallery, 0.05),
+	chrh:   $cappy,
+	chrac:  $cappy,
+	
+	chrifg: $gallery,
+	chribg: $cappy,
+);
+
+// SET FONTS
+// Set font stacks.
+// Use the name of the first font as the variable name.
+//
+// $fopensans:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $fraleway:   'Raleway',   'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $fhelvetica:              'Helvetica Neue', Helvetica, Arial, sans-serif;
+$flato:      'Lato',      'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fsourcecodepro: "Source Code Pro", Menlo, Monaco, Courier, monospace;
+
+// FONTS
+// Set base fonts. Use the font variables set above.
+// These maps will be converted to %selectors that you can @extend.
+// (e.g., @extend %font-title)
+//
+$fonts: (
+	title: (
+		font-family: $flato,
+		font-weight: 300,
+	),
+	heading: (
+		font-family: $flato,
+		font-weight: 300,
+	),
+	lead: (
+		font-family: $flato,
+		font-weight: 300,
+	),
+	body: (
+		font-family: $flato,
+		font-weight: 400,
+	),
+	main: (
+		font-family: $flato,
+		font-weight: 400,
+	),
+	bold: (
+		font-weight: 600,
+	),
+	italic: (
+		font-style: italic,
+	),
+	mono: (
+		font-family: $fsourcecodepro,
+	),
+);
+
+// FONTS-IMPORT
+// If you need to, import fonts from Google Fonts.
+// Give the font's name and what styles you need.
+//
+$fonts-import: (
+	"Lato": "300" "400" "400italic" "600" "600italic",
+	"Source Code Pro": "400" "400italic" "700" "700italic",
+);
+
+// EXPORT
+//
+@import "bootstrap";
+@import "export";

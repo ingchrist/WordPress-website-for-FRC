@@ -1,0 +1,133 @@
+
+// Default box-sizing sucks.
+*,
+*:before,
+*:after
+{
+	box-sizing: border-box;
+}
+
+
+// Default body styling
+body
+{
+	position: relative;
+	overflow-x: hidden;
+	width: 100%;
+	
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: subpixel-antialiased;
+	font-smoothing: subpixel-antialiased;
+	
+	@extend %font-body;
+	
+	background-color: color(lbg);
+	background-size: cover;
+	background-position: center;
+	color: color(lfg);
+	
+	// Override WP's override
+	&.custom-background
+	{
+		background-position: center !important;
+	}
+	
+}
+
+// Primary wrapper
+#www
+{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform: translateX(0);
+	transition: all ease 0.3s;
+}
+
+@each $side in left, right
+{
+	#www.offcanvas-#{$side}
+	{
+		transform: translateX(rem(300px * if($side == left, 1, -1)));
+	}
+}
+
+// Default anchors
+a
+{
+	text-decoration: none;
+	color: color(da);
+}
+
+// Default container
+.cc
+{
+	@extend %cc;
+}
+
+// Image wrappers
+img
+{
+	max-width: 100%;
+	height: auto !important; // jic
+}
+
+// Video wrappers
+.video.w {
+	height: 0;
+	padding-top: rem(25px);
+	margin-bottom: rem(16px);
+	padding-bottom: 56.25%; // 16:9
+	position: relative;
+}
+.video.w iframe {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0; left: 0; right: 0; bottom: 0;
+}
+
+// Random
+small
+{
+	font-size: 0.7em;
+}
+
+// SELECTOR: COPYRIGHT
+//
+#copyright
+{
+	@include vpadding;
+	@include scale(-1);
+	text-align:center;
+	@extend %font-lead;
+	background-color: color(chrbg);
+	color: color(chrh);
+}
+
+.nav-padding
+{
+	padding: 4rem 0;
+}
+
+hr
+{
+	@extend %ccs-article;
+	height: rem(1px);
+	background: color(la);
+	@include spacing(bottom, margin);
+	border: 0;
+}
+
+textarea
+{
+	overflow:auto;
+}
+
+pre.debug
+{
+	background: color(lbg);
+	color: color(lfg);
+	font-family: 'Source Code Pro', Menlo, Monaco, 'Courier New', Courier, monospace;
+}

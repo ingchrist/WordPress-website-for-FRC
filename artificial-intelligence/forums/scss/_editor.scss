@@ -1,0 +1,43 @@
+
+form
+{
+	@extend %ccw-article;
+	@include ai-forms;
+}
+
+#wp-thread-new-wrap
+{
+	@include vpadding;
+}
+
+.thread-new
+{
+	&-title,
+	&-tags
+	{
+		display: block;
+		width: 100%;
+		border: 0;
+		padding: 0.25rem;
+		// @include spacing($prop: margin);
+
+		@include scale(1);
+
+		@extend %font-lead;
+
+		-webkit-appearance: none;
+			 -moz-appearance: none;
+				-ms-appearance: none;
+						appearance: none;
+
+		// placeholder to help with indents
+		
+	}
+}
+
+button[type="submit"],
+a.button
+{
+	@include spacing(top, margin);
+	display: inline-block;
+}

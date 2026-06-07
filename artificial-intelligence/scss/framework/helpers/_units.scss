@@ -1,0 +1,33 @@
+
+// FUNCTION: RAISE
+// Raises the passed base to a positive or negative (integer) power.
+//   $base number The number to raise
+//   $power number The power to raise by
+//
+@function raise($base, $power)
+{
+	$base-orig: $base;
+	@if $power > 0
+	{
+		@for $i from 1 to $power
+		{
+			$base: $base * $base-orig;
+		}
+		@return $base;
+	}
+	
+	@elseif $power < 0
+	{
+		$power: -1 * $power;
+		@for $i from 1 to $power
+		{
+			$base: $base * $base-orig;
+		}
+		@return 1/$base;
+	}
+	
+	@elseif $power == 0
+	{
+		@return 1;
+	}
+}

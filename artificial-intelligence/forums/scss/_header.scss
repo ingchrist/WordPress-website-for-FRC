@@ -1,0 +1,30 @@
+
+#header-forums
+{
+	@include ai-navbar(".header-forums", $custom-layout: true, $header-sep: ".header-sep");
+	
+	.number a
+	{
+		background-color: color(chribg);
+		color: color(chrifg);
+	}
+	
+	@include below(disco)
+	{
+		.number
+		{
+			margin-left: auto;
+		}
+	}
+	
+}
+
+#nav-offcanvas-left-forums
+{
+	@include ai-offcanvas(&, $side: left);
+}
+
+#nav-offcanvas-right
+{
+	@include ai-offcanvas(&, $side: right);
+}

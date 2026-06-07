@@ -1,0 +1,45 @@
+@mixin ai-footer($sel: &, $opts...)
+{
+	$args: keywords($opts);
+	
+	@include vpadding;
+	background-color: color(chrbg);
+	color: color(chrfg);
+	
+	> .cc
+	{
+		@extend %row;
+	}
+	
+	#{map-find($args, col-sel)}
+	{
+		@extend %hide-pop;
+		@extend %show-punk;
+		@extend %col-punk-2;
+		
+		@extend %ai-rhythm;
+		@extend %font-lead;
+		
+		h6
+		{
+			@include vpadding-bottom;
+			@include scale;
+			@extend %font-heading;
+			color: color(chrh);
+		}
+		
+		&:last-of-type
+		{
+			@extend %show-pop;
+			@extend %col-pop-12;
+			@extend %col-punk-4;
+			
+			h6
+			{
+				@include scale(1);
+			}
+			
+		}
+	}
+	
+}

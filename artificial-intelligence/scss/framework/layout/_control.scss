@@ -1,0 +1,152 @@
+
+// SELECTOR: CLEARFIX
+// Forces element to clear floated children
+//
+%cf
+{
+	*zoom:1;
+	
+	&:before,
+	&:after
+	{
+		content: " ";
+		display: table;
+	}
+	
+	&:after
+	{
+		clear:both;
+	}
+}
+
+
+// MIXIN: BOX
+// Creates a flexbox-like environment that's friendly to older browsers.
+// When applied to an element, must have an additional wrapper around the items.
+// Example (mixin applied to .box):
+//
+// <div class="box">
+//   <ul class="container">
+//     <li>
+//       Item #1
+//     </li>
+//     <li>
+//       Item #2
+//     </li>
+//     <li>
+//       Item #3
+//     </li>
+//   </ul>
+// </div>
+//
+//   $align    The starting position of child elements.
+//             Supports all values supplied to justify-content, as well as
+//             left, right, start, and end.
+//
+//   $reverse  Whether to reverse source order. Boolean.
+//
+//   $cc       Selector that will be applied to the wrapper.
+//
+//   $items    Selector that will be applied to the items,
+//             from the perspective of the wrapper.
+//
+@mixin box($align: left, $reverse: false, $cc: "> :first-child", $items: "> *")
+{
+	
+	$inner-float: left !default;
+	$outer-float: left !default;
+	
+	@if $reverse
+	{
+		$inner-float: right;
+	}
+	
+	$justify: null !default;
+	$direction: null !default;
+	
+	@if $align == left
+	{
+		@if $reverse
+		{
+			$direction: row-reverse;
+			$justify: flex-end;
+		}
+	}
+	@elseif $align == right
+	{
+		@if $reverse
+		{
+			$direction: row-reverse;
+		}
+		@else
+		{
+			$justify: flex-end;
+		}
+		
+		$outer-float: right;
+	}
+	@elseif $align == start or $align == flex-start
+	{
+		$justify: flex-start;
+		@if $reverse
+		{
+			$direction: row-reverse;
+			$outer-float: right;
+		}
+	}
+	@elseif $align == end or $align == flex-end
+	{
+		$justify: flex-end;
+		@if $reverse
+		{
+			$direection: row-reverse;
+		}
+		
+		@else
+		{
+			$outer-float: right;
+		}
+	}
+	@elseif $align == center
+	{
+		$justify: center;
+	}
+	@elseif $align == space-around or $align == space-between
+	{
+		@warn "IE<10 and other old browsers will not work with $align set to #{$align}.";
+		$justify: $align;
+	}
+	
+	html.flexbox & #{$cc},
+	html.flexboxlegacy & #{$cc}
+	{
+		display: flex;
+		flex-direction: $direction;
+		justify-content: $justify;
+	}
+	
+	html.no-flexbox.no-flexboxlegacy &
+	{
+		@extend %cf;
+		
+		#{$cc}
+		{
+			@extend %cf;
+			
+			@if $align == center
+			{
+				margin: 0 auto;
+			}
+			@else
+			{
+				float: $outer-float;
+			}
+			
+			#{$items}
+			{
+				float: $inner-float;
+			}
+		}
+	}
+	
+}

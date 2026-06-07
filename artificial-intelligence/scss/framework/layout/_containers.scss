@@ -1,0 +1,62 @@
+
+// SELECTOR: PRIMARY CONTAINER
+// Container used for most root site elements.
+//
+%cc
+{
+	width: $config-cc-width;
+	margin: 0 auto;
+}
+
+// SELECTOR: PRIMARY CONTAINER (ANCHOR)
+// Sometimes, anchors/links are used as containers.
+// We need those to display as block.
+a%cc
+{
+	display: block;
+}
+
+// CONSTANT: ARTICLE-CONTAINER
+// The maximum width of the article container.
+//
+$config-cc-article: rem($config-cc-article);
+
+// SELECTOR: ARTICLE-CONTAINER
+// Wraps the above variable in a selector.
+//
+%cc-article
+{
+	width: $config-cc-width;
+	max-width: $config-cc-article;
+	margin: 0 auto;
+}
+
+// CONSTANT: ARTICLE-CONTAINER-WIDE
+// The maximum width of the article footer container.
+//
+$config-cc-article-w: $config-cc-article * (4/3);
+
+// SELECTOR: ARTICLE-CONTAINER
+// Wraps the above variable in a selector.
+//
+%ccw-article
+{
+	width: $config-cc-width;
+	max-width: $config-cc-article-w;
+	margin: 0 auto;
+}
+
+// CONSTANT: ARTICLE-CONTAINER-WIDE
+// The maximum width of the article footer container.
+//
+$config-cc-article-s: $config-cc-article * (5/6);
+
+// SELECTOR: ARTICLE-CONTAINER
+// Wraps the above variable in a selector.
+//
+%ccs-article
+{
+	width: $config-cc-width;
+	max-width: $config-cc-article-s;
+	margin: 0 auto;
+}

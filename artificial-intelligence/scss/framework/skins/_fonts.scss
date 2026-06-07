@@ -1,0 +1,36 @@
+// IMPORT FONTS
+// Creates an import statement to get the requested fonts form Google Fonts.
+//
+
+// Import variable
+//
+$url: "http://fonts.googleapis.com/css?family=";
+
+@each $font, $styles in $fonts-import
+{
+	// Replace spaces with plus signs in font names
+	$font: str-replace($font, ' ', '+');
+	
+	// Append it
+	$url: $url + $font + ':';
+	
+	@each $style in $styles
+	{
+		$url: $url + $style;
+		
+		@if last($styles) != $style
+		{
+			$url: $url + ',';
+		}
+	}
+	
+	@if $font != last(map-keys($fonts-import))
+	{
+		$url: $url + '|';
+	}
+	
+}
+
+@import url($url);
+
+// @import url(http://fonts.googleapis.com/css?family=Open+Sans);

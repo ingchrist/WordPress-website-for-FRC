@@ -1,0 +1,58 @@
+// SELECTOR: ARTICLE FOOTER
+// Appears at the bottom of posts,
+// giving author bio and associated categories and tags.
+//
+#article-footer
+{
+	@extend %ai-rhythm;
+	background-color: color(lbg);
+	
+	hr.end
+	{
+		@extend %ccs-article;
+		height: rem(1px);
+		border: 0;
+		background-color: color(la);
+	}
+	
+	.profile
+	{
+		@include ai-profile;
+	}
+	
+	.categories
+	{
+		@extend %ccw-article;
+		@include vpadding;
+		@extend %font-lead;
+		text-align: center;
+		@extend %row;
+			
+		.col
+		{
+			@extend %col-pop-6;
+		}
+		
+		h6
+		{
+			@include scale(4);
+		}
+		
+		a
+		{
+			@extend a%ai-rhythm;
+			border: 0 !important;
+			border-color: color(dfg);
+			color: color(dfg);
+			
+			&:hover
+			{
+				color: color(da);
+				border-color: color(da);
+			}
+			
+		}
+			
+	}
+	
+}

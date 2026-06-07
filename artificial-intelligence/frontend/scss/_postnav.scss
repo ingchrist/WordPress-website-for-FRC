@@ -1,0 +1,64 @@
+
+// SELCTOR: POST NAV
+// Styles previous-next links at the bottom of posts
+//
+#post-nav
+{
+	display: table;
+	width: 100%;
+	background: color(dbg);
+	
+	.post-next,
+	.post-prev
+	{
+		display: none;
+		@include above(disco)
+		{
+			display: table-cell;
+			width: 50%;
+		}
+		
+		border: 0 !important;
+		
+		background-size: cover;
+		background-position: center;
+		
+		@extend %ai-rhythm;
+		
+		> .c
+		{
+			height: 100%;
+			min-height: 20rem;
+			padding: 1.5rem;
+			transition: background, 0.5s, ease;
+			
+			background: color(chrbg);
+		}
+		
+		&:hover > .c
+		{
+			background: color(chra);
+		}
+		
+		h4
+		{
+			@extend %font-heading;
+			@include scale(3);
+			@include vpadding-bottom;
+			color: color(chrh);
+		}
+		
+		.icon
+		{
+			@include scale(8);
+			color: color(dh);
+		}
+		
+	}
+	
+	.post-prev
+	{
+		text-align: right;
+	}
+	
+}

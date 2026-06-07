@@ -1,0 +1,99 @@
+
+// SET COLORS
+// Set color variables for base colors.
+// Keep in mind that these should be good color names.
+// http://chir.ag/projects/name-that-color/
+//
+$lightning: #fd0;
+$mineshaft: #222;
+$gallery: #eee;
+
+// BASE COLORS
+// Set base colors. Use the color variables set above.
+// Find documentation in app/assets/scss/framework/themes/_colors.scss
+//
+$colors: (
+	lfg:    $mineshaft,
+	lbg:    $gallery,
+	la:     lighten($mineshaft, 40%),
+	lh:     lighten($mineshaft, 20%),
+	lac:    lighten($mineshaft, 30%),
+
+	dfg:    $gallery,
+	dbg:    $mineshaft,
+	da:     $lightning,
+	dh:     $lightning,
+	dac:    darken($gallery, 40%),
+
+	chrfg:  $gallery,
+	chrbg:  transparentize($mineshaft, 0.3),
+	chra:   transparentize($mineshaft, 0.1),
+	chrh:   $lightning,
+	chrac:  lighten($mineshaft, 60%),
+
+	chrifg: $mineshaft,
+	chribg: $lightning,
+);
+
+// SET FONTS
+// Set font stacks.
+// Use the name of the first font as the variable name.
+//
+// $fhelvetica:              'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $fopensans:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $flato:      'Lato',      'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fraleway:   'Raleway',   'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fsourcecodepro: "Source Code Pro", Menlo, Monaco, Courier, monospace;
+
+// FONTS
+// Set base fonts. Use the font variables set above.
+// These maps will be converted to %selectors that you can @extend.
+// (e.g., @extend %font-title)
+//
+$fonts: (
+	title: (
+		font-family: $fraleway,
+		font-weight: 200,
+		text-transform: uppercase,
+	),
+	heading: (
+		font-family: $fraleway,
+		font-weight: 300,
+		text-transform: uppercase,
+	),
+	lead: (
+		font-family: $fraleway,
+		font-weight: 300,
+	),
+	body: (
+		font-family: $fraleway,
+		font-weight: 400,
+	),
+	main: (
+		font-family: $fraleway,
+		font-weight: 400,
+	),
+	bold: (
+		font-weight: 600,
+	),
+	italic: (
+		font-style: italic,
+	),
+	mono: (
+		font-family: $fsourcecodepro,
+	),
+);
+
+// FONTS-IMPORT
+// If you need to, import fonts from Google Fonts.
+// Give the font's name and what styles you need.
+//
+$fonts-import: (
+	"Raleway": "200" "300" "400" "600", // Raleway has no italics styles
+	"Source Code Pro": "400" "400italic" "700" "700italic",
+);
+
+// EXPORT
+//
+@import "bootstrap";
+@import "export";

@@ -1,0 +1,20 @@
+// FUNCTION: STRING-REPLACE
+// Find a substring inside of a string and replace it with another substring.
+//  $string   The haystack
+//  $needle   The needle
+//  $replace  Replace the needle with this
+//
+@function str-replace( $string, $needle, $replace: '' )
+{
+	$i: str-index( $string, $needle );
+	$slice: $string;
+  
+	@while $i
+	{
+		$slice: if( $i == 1, '', str-slice( $slice, 0, $i - 1 ) ) + $replace + str-slice( $slice, $i + str-length( $replace ) );
+		$i: str-index($slice, $needle);
+	}
+	
+	@return $slice;
+
+}

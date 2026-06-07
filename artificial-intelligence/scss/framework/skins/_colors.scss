@@ -1,0 +1,8 @@
+
+// FUNCTION: COLORS
+// Returns a color value from the skin colors.
+//
+@function color($color)
+{
+	@return map-find($colors, $color);
+}

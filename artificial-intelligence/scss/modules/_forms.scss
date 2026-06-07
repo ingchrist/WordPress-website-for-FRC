@@ -1,0 +1,67 @@
+@mixin ai-forms($sel: &, $opts...)
+{
+	$args: keywords($opts);
+	
+	form
+	{
+		@extend %cc-article;
+	}
+	
+	.form-group
+	{
+		@include vpadding-bottom;
+		
+		input,
+		textarea
+		{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			-ms-appearance: none;
+			appearance: none;
+			
+			border: 0;
+			padding: 0.5em;
+			width: 100%;
+			font-size: scale();
+			
+			@extend %font-lead;
+			background-color: color(chrfg);
+			color: color(chrifg);
+		}
+		
+		&.req
+		{
+			input,
+			textarea
+			{
+				background-color: color(chrh);
+			}
+		}
+	}
+	
+	button,
+	input[type="submit"]
+	{
+		
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		
+		display: inline-block;
+		padding: 0.4em;
+		border: 0;
+		font-size: scale(1);
+		
+		@extend %font-heading;
+		background-color: color(chribg);
+		color: color(chrifg);
+		
+		&:hover
+		{
+			cursor: pointer;
+		}
+		
+	}
+	
+}

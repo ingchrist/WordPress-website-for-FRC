@@ -1,0 +1,95 @@
+
+// SELECTOR: ARCHIVE HEADER
+// Appears on archive pages, search results, etc.
+// displaying the cat or search term.
+//
+#header-archive
+{
+	padding: 3rem 0;
+	
+	@extend %ai-rhythm;
+	background-color: color(dbg);
+	color: color(dh);
+	
+	@include above(punk)
+	{
+		padding: 7rem 0;
+		text-align: center;
+	}
+	
+	h1
+	{
+		@extend %cc-article;
+		@include scale(3);
+		@extend %font-heading;
+	}
+	
+	h2
+	{
+		@extend %cc-article;
+		@include scale(2);
+		@extend %font-heading;
+	}
+	
+	p
+	{
+		@extend %cc-article;
+		@extend %font-lead;
+		color: color(dfg);
+	}
+	
+}
+
+#posts-nav
+{
+	display: table;
+	width: 100%;
+	background: color(dbg);
+	
+	> a
+	{
+		@extend %font-heading;
+		display: table-cell;
+		width: 50%;
+		padding: 1rem 1.5rem;
+		
+		@include scale(1);
+		@include above(punk)
+		{
+			@include scale(2);
+		}
+		
+		color: color(dh);
+		
+		transition-property: background, color;
+		transition-duration: 0.2s, 0.2s;
+		transition-timing-function: ease, ease;
+		
+		&:hover
+		{
+			background: color(dh);
+			color: color(dbg);
+		}
+		
+		&:only-child
+		{
+			text-align: center;
+		}
+		
+	}
+	
+	[data-icon]:before
+	{
+		@include scale(1);
+		@include above(punk)
+		{
+			@include scale(2);
+		}
+	}
+	
+	.posts-nav-next
+	{
+		text-align: right;
+	}
+	
+}

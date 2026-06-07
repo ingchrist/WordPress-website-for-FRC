@@ -1,0 +1,39 @@
+{
+    "name": "duchenerc/artificial-intelligence",
+    "description": "The ultimate WordPress theme for any FRC team.",
+    "keywords": ["dark", "modern", "FRC"],
+    "license": "GPL-2.0+",
+    "version": "1.2.4",
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "http://wpackagist.org"
+      }
+    ],
+    "authors":[
+        {
+            "name": "Ryan Duchene",
+            "email": "duchenerc@gmail.com"
+        }
+    ],
+    "type": "wordpress-theme",
+    "require": {
+        "php": ">=5.3.3",
+        "wpackagist-plugin/advanced-custom-fields": ">=4.3.9"
+    },
+    "require-dev":{
+        "php": ">=5.3.3"
+    },
+    "extra": {
+      "installer-paths": {
+        "vendor/{$name}": [
+          "wpackagist-plugin/advanced-custom-fields"
+        ]
+      }
+    },
+    "autoload": {
+      "files": [
+        "vendor/advanced-custom-fields/acf.php"
+      ]
+    }
+}

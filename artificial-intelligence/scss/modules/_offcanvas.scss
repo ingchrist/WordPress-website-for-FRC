@@ -1,0 +1,46 @@
+
+%ai-offcanvas
+{
+	position: fixed;
+	top: 0;
+	width: rem(300px);
+	max-width: 100%;
+	height: 100%;
+	background-color: color(dbg);
+	
+	> .c
+	{
+		position: sticky;
+		top: 0;
+		width: 100%;
+	}
+}
+
+@mixin ai-offcanvas($sel: &, $opts...)
+{
+	$args: keywords($opts);
+	
+	@extend %ai-offcanvas;
+	
+	@if map-has-key( $args, side )
+	{
+		$side: map-find( $args, side );
+		
+		@if $side == left or $side == right
+		{
+			&
+			{
+				#{$side}: rem(-300px);
+				text-align: $side;
+			}
+			
+		}
+		
+		@else
+		{
+			@error "Pass a side to the ai-offcanvas mixin, rather than #{inspect(map-find($args, side))}";
+		}
+		
+	}
+	
+}

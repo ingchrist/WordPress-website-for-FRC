@@ -1,0 +1,151 @@
+
+// CONSTANT: GIRD COLUMNS
+// Number of columns in the grid.
+//
+$grid-cols-num: 12;
+
+// CONSTANT: GRID GUTTERS
+// Width of the gutters of the grid.
+//
+$grid-cols-gutter: 2%;
+
+// CONSTANT: COLUMN WIDTH
+// Width of each column, as calculated from
+// the number of columns and width of gutters.
+//
+$grid-cols-width: ((100% / $grid-cols-num) - $grid-cols-gutter);
+
+
+// SELECTOR: ROW
+// Container for all grid elements.
+//
+%row
+{
+	// Flexbox
+	//
+	html.flexbox &,
+	html.flexboxlegacy
+	{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	
+	// Floats
+	//
+	html.no-flexbox.no-flexboxlegacy &
+	{
+		@extend %cf;
+	}
+}
+
+
+// SELECTOR: COLUMN
+// Single grid element. Inherited by all child grid selectors.
+//
+%col
+{
+	margin: 0 $grid-cols-gutter / 2;
+	
+	// Floats
+	//
+	html.no-flexbox.no-flexboxlegacy &
+	{
+		float: left;
+	}
+	
+	&:last-child//:not(%col-end) // because it doesn't work for whatever reason
+	{
+		// Flexbox
+		//
+		html.flexbox &,
+		html.flexboxlegacy &
+		{
+			margin-left: auto;
+		}
+		
+		// Floats
+		//
+		html.no-flexbox.no-flexboxlegacy &
+		{
+			float: right;
+		}
+	}
+}
+
+// SELECTOR GENERATION: CHILD GRID COLS
+// Generates selectors for each breakpoint, at each column width.
+//
+@each $break in $breaks-keys
+{
+	@include above($break)
+	{
+		@for $i from 1 through $grid-cols-num
+		{
+			
+			// SELECTOR: COLUMN
+			// Defines column width.
+			//
+			%col-#{$break}-#{$i}
+			{
+				width: ($grid-cols-width * $i) + ($grid-cols-gutter * ($i - 1));
+			}
+		}
+		
+		@for $i from 1 to $grid-cols-num
+		{
+			
+			// SELECTOR: COLUMN OFFSET
+			// Defines column left margin.
+			//
+			%col-#{$break}-offset-#{$i}
+			{
+				margin-left: ($grid-cols-width * $i) + ($grid-cols-gutter * ($i - 0.5));
+			}
+			
+			// SELECTOR: COLUMN PUSH
+			// Pushes column to the right.
+			//
+			%col-#{$break}-push-#{$i}
+			{
+				left: ($grid-cols-width * $i) + ($grid-cols-gutter * ($i - 1));
+			}
+			
+			// SELECTOR: COLUMN PULL
+			// Pulls column to the left.
+			//
+			%col-#{$break}-pull-#{$i}
+			{
+				right: ($grid-cols-width * $i) + ($grid-cols-gutter * ($i - 1));
+			}
+		}
+		
+		// SELECTOR: HIDE ON BREAKPOINT
+		// Hide on specific breakpoint.
+		//
+		%hide-#{$break}
+		{
+			display: none;
+		}
+		
+		// SELECTOR: SHOW ON BREAKPOINT
+		// Show on specific breakpoint.
+		//
+		%show-#{$break}
+		{
+			display: initial;
+		}
+	}
+}
+
+// Floats
+//
+@each $break in $breaks-keys
+{
+	@for $i from 1 through $grid-cols-num
+	{
+		%col-#{$break}-#{$i}
+		{
+			@extend %cf;
+		}
+	}
+}

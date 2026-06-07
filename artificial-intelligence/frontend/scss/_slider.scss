@@ -1,0 +1,48 @@
+
+// SELECTOR: SLIDER
+// TODO: Refactor to only include in homepage.
+//
+.slidesjs
+{
+	position: relative;
+	width: 100%;
+	
+	background: color(dbg);
+	
+	&-pagination
+	{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 950;
+		text-align: center;
+		
+		&-item
+		{
+			display: inline-block;
+			
+			a
+			{
+				display: block;
+				height: 1rem;
+				width: 5rem;
+				line-height: 0;
+				font-size: 0;
+				border-top: 1px solid;
+				border-color: color(chrac);
+				
+				&.active
+				{
+					border-color: color(chrfg);
+				}
+			}
+		}
+		
+	}
+}
+
+// Thumbnails are blocks
+.thumbnail
+{
+	@include ai-block;
+}

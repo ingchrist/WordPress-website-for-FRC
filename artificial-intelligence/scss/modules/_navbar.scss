@@ -1,0 +1,128 @@
+
+// MODULE: NAVBAR
+// Minimalist navbar.
+// Options:
+//   custom-layout   Allow user to define grid within
+//
+@mixin ai-navbar($sel: &, $opts...)
+{
+	$args: keywords($opts);
+	
+	@include above(punk)
+	{
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+	
+	z-index: 1000;
+	font-size: scale(1);
+	@extend %font-heading;
+	background-color: color(chrbg);
+	color: color(chrh);
+	
+	> .cc
+	{
+		@if map-has-key($args, custom-layout) and map-find($args, custom-layout)
+		{
+			@extend %row;
+		}
+		
+		@else
+		{
+			@include box;
+		}
+	}
+	
+	@if map-has-key( $args, header-sep )
+	{
+		#{map-find( $args, header-sep )}
+		{
+			&:first-child
+			{
+				@extend %col-pop-12;
+				@extend %col-disco-6;
+				text-align: center;
+				
+				@include above(disco)
+				{
+					@include box;
+				}
+				
+			}
+			
+			&:last-child:not(:first-child)
+			{
+				@extend %hide-pop;
+				@extend %show-disco;
+				@extend %col-disco-6;
+				
+				@include above(disco)
+				{
+					@include box(right, $cc: "> .c", $items: "> .menu-item");
+				}
+				
+			}
+		}
+	}
+	
+	.menu-item.current-menu-ancestor,
+	.menu-item.current-menu-item
+	{
+		> a
+		{
+			border-top-color: color(chribg);
+		}
+	}
+	
+	a
+	{
+		display: block;
+		padding: 0.4em;
+		border-top: 0.1em solid;
+		border-bottom: 0.1em solid;
+		border-color: transparent;
+		color: color(chrh);
+		transition-property: color, background, border-color;
+		transition-duration: 0.2s, 0.2s, 0.2s;
+		transition-timing-function: ease, ease, ease;
+	}
+	
+	.sub-menu
+	{
+		display: none;
+		position: absolute;
+		background-color: color(chrbg);
+		
+		a
+		{
+			border-top: 0;
+			border-bottom: 0;
+			padding: 0.5em 0.4em 0.5em 0.35em;
+			
+			border-left: 0.2em solid;
+			border-color: transparent;
+		}
+		
+		> .menu-item.current-menu-item > a
+		{
+			border-color: color(chribg);
+		}
+	}
+	
+	.menu-item:hover
+	{
+		> a
+		{
+			background-color: color(chribg);
+			border-color: color(chribg);
+			color: color(chrifg);
+		}
+		
+		.sub-menu
+		{
+			display: initial;
+		}
+	}
+	
+}

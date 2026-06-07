@@ -1,0 +1,38 @@
+
+// SELECTOR: ATTACHMENT
+// Styles attachments
+//
+.attachment #main
+{
+	
+	min-height: 100vh;
+	padding: 3rem;
+	background: color(dbg);
+	
+	> .cc
+	{
+		@extend %row;
+	}
+	
+	.article.c
+	{
+		@extend %cc-article;
+		@include ai-article(".article",
+												$color-p: dfg,
+												$color-h: dh,
+												$color-ac: dac);
+		
+	}
+	
+	.attachment.w
+	{
+		text-align: center;
+	}
+	
+	img
+	{
+		margin: 0 auto;
+		max-height: 80vh;
+	}
+	
+}

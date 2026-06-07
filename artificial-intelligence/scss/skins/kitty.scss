@@ -1,0 +1,105 @@
+
+// SET COLORS
+// Set color variables for base colors.
+// Keep in mind that these should be good color names.
+// http://chir.ag/projects/name-that-color/
+//
+// $lightning: #fd0;
+// $mineshaft: #222;
+// $gallery: #eee;
+
+$kitty:       #026;
+$kitty-dark:  darken($kitty, 10%);
+$kitty-light: #69f;
+$mineshaft:   #222;
+$white:       #fff;
+
+// BASE COLORS
+// Set base colors. Use the color variables set above.
+// Find documentation in app/assets/scss/framework/themes/_colors.scss
+//
+$colors: (
+
+	lfg:    $mineshaft,
+	lbg:    $white,
+	la:     $kitty-light,
+	lh:     $kitty,
+	lac:    $kitty,
+	
+	dfg:    darken($white, 20%),
+	dbg:    $kitty-dark,
+	da:     $kitty-light,
+	dh:     $kitty-light,
+	dac:    $kitty-light,
+	
+	chrfg:  $white,
+	chrbg:  transparentize($kitty, 0.3),
+	chra:   transparentize($kitty, 0.1),
+	chrh:   $kitty-light,
+	chrac:  $kitty-light,
+	
+	chrifg: $kitty-dark,
+	chribg: $white,
+	
+);
+
+// SET FONTS
+// Set font stacks.
+// Use the name of the first font as the variable name.
+//
+$fhelvetica:              'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fopensans:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $flato:      'Lato',      'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $fraleway:   'Raleway',   'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fsourcecodepro: "Source Code Pro", Menlo, Monaco, Courier, monospace;
+
+// FONTS
+// Set base fonts. Use the font variables set above.
+// These maps will be converted to %selectors that you can @extend.
+// (e.g., @extend %font-title)
+//
+$fonts: (
+	title: (
+		font-family: $fopensans,
+		font-weight: 300,
+	),
+	heading: (
+		font-family: $fopensans,
+		font-weight: 300,
+	),
+	lead: (
+		font-family: $fopensans,
+		font-weight: 300,
+	),
+	body: (
+		font-family: $fhelvetica,
+		font-weight: 300,
+	),
+	main: (
+		font-family: $fhelvetica,
+		font-weight: 300,
+	),
+	bold: (
+		font-weight: 600,
+	),
+	italic: (
+		font-style: italic,
+	),
+	mono: (
+		font-family: $fsourcecodepro,
+	),
+);
+
+// FONTS-IMPORT
+// If you need to, import fonts from Google Fonts.
+// Give the font's name and what styles you need.
+//
+$fonts-import: (
+	"Open Sans": "300",
+	"Source Code Pro": "400" "400italic" "700" "700italic",
+);
+
+// EXPORT
+//
+@import "bootstrap";
+@import "export";

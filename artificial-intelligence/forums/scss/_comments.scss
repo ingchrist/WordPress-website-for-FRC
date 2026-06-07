@@ -1,0 +1,124 @@
+
+#comments-forums
+{
+	@include vpadding;
+	@include ai-forms;
+	
+	h2,
+	h3
+	{
+		@include scale(2);
+		@include vpadding-bottom;
+		@extend %font-heading;
+		text-align: center;
+	}
+	
+	.comments-old
+	{
+		@extend %ccw-article;
+	}
+	
+	.comments-new
+	{
+		a
+		{
+			@extend a%ai-rhythm;
+			
+			border-color: color(dfg);
+			color: color(dfg);
+			
+			&:hover
+			{
+				color: color(da);
+				border-color: color(da);
+			}
+		}
+		
+		p
+		{
+			@include vpadding-bottom;
+		}
+	}
+	
+	.comment
+	{
+		@include vpadding;
+		
+		&-header
+		{
+			background: color(dbg);
+			padding: 0 0.25rem;
+			font-size: scale();
+			@extend %font-heading;
+			@extend %cf;
+			
+			> .left,
+			> .right
+			{
+				
+				a
+				{
+					display: block;
+					padding: 0.5em 0.2em;
+					color: color(dh);
+					transition-property: background, color;
+					transition-duration: 0.1s, 0.1s;
+					transition-timing-function: ease, ease;
+					
+					&:hover
+					{
+						background-color: color(dh);
+						color: color(dbg);
+					}
+				}
+			}
+			
+			> .left
+			{
+				float: left;
+				@include box($cc: "> .c");
+			}
+			
+			> .right
+			{
+				float: right;
+				@include box(right, $cc: "> .c");
+			}
+			
+			.date
+			{
+				padding: 0.5em 0.2em;
+			}
+			
+		}
+		
+		&-body
+		{
+			@include vpadding;
+			
+			a
+			{
+				@extend a%ai-rhythm;
+				
+				border-color: color(dfg);
+				color: color(dfg);
+				
+				&:hover
+				{
+					color: color(da);
+					border-color: color(da);
+				}
+				
+			}
+		}
+		
+		&-replies
+		{
+			padding-left: 3.5%;
+			margin-left: 1.5%;
+			border-left: 1px solid color(lac);
+		}
+		
+	}
+	
+}

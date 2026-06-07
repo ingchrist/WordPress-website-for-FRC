@@ -1,0 +1,12 @@
+
+// SELECTOR: ARTICLE ANCHOR
+// Applies to links in an article context.
+//
+a%ai-rhythm
+{
+	text-decoration: none !important;
+	border-bottom: 1px solid;
+	transition-property: border-color, color;
+	transition-duration: 0.5s, 0.5s;
+	transition-timing-function: ease, ease;
+}

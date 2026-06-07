@@ -1,0 +1,77 @@
+
+// POST FORMATS
+// These are similar to categories, distinguishing posts from one another.
+// They are useful mostly because they are standardized.
+// http://codex.wordpress.org/Post_Formats
+//
+// AI supports most post formats.
+// (standard, aside, link, image, quote, status, video)
+//
+// Standard is displayed as a block, with the post thumbnail serving as a
+// fixed background image, and the header and lead being displayed on top of it.
+// It is possible to click on these to be taken to the full article.
+//
+// All other formats are displayed as plates, with the icon sitting in the left,
+// metadata sitting next to it, and content sitting on the right.
+//
+// If at all possible, I am interested in changing the way some of these are
+// displayed (these being the formats that use plates). I really like the way
+// quotes, statuses, and links are displayed. But I'd like asides to be more
+// article-like, and photos and videos (and galleries, eventually) to be more
+// media-centric.
+//
+// AI is currently missing support for only three formats.
+// (gallery, audio, chat)
+// I am very interested in adding gallery, less so in audio, and not at all
+// in chat.
+//
+.blog .post.format,
+.search .post.format,
+.archive .post.format // never actually used directly
+{
+	
+	// POST FORMAT
+	// Standard
+	//
+	&-standard
+	{
+		@include ai-block(&, $req-sticky: true);
+	}
+	
+	// POST FORMAT
+	// Aside, image, video, link, status
+	//
+	@each $format in aside, image, video, link, status
+	{
+		&-#{$format}
+		{
+			@include ai-plate(&, $icon: $format);
+		}
+	}
+	
+	// POST FORMAT
+	// Quote
+	//
+	&-quote
+	{
+		@include ai-plate(&, $icon: quote);
+		
+		.cite
+		{
+			@extend %hide-pop;
+			@extend %show-rock;
+			@extend %col-rock-4;
+			
+			@include scale(1);
+			@extend %font-heading;
+			color: color(dh);
+		}
+		
+	}
+	
+	&-video .content p:first-of-type
+	{
+		@extend .video.w;
+	}
+	
+}

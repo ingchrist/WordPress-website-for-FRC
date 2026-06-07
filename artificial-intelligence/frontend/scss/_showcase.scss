@@ -1,0 +1,149 @@
+
+// SELECTOR: SHOWCASE HEADER
+//
+#header-showcase
+{
+	@include ai-navbar(".header-showcase");
+}
+
+// SELECTOR: SHOWCASE NAVIGATION
+//
+#nav-showcase
+{
+	@include box($cc: "> .c", $items: "> .menu-item");
+	
+	html.flexbox &,
+	html.flexboxlegacy &
+	{
+		> .c
+		{
+			width: 100%;
+		}
+		
+		.menu-item:nth-of-type(2)
+		{
+			margin-right: auto;
+		}
+	}
+	
+}
+
+.overlay
+{
+	height: 100vh;
+	
+	text-align: center;
+	
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: inset 0 0 rem(100px) rem(100px) color(dbg);
+	
+	> .ccc
+	{
+		display: table;
+		height: 100vh;
+		width: 100%;
+		background: color(chrbg);
+	}
+	
+	.c
+	{
+		display: table-cell;
+		width: 100%;
+		border: 0 !important;
+		@extend %ai-rhythm;
+		vertical-align: middle;
+	}
+	
+	h1
+	{
+		@extend %font-title;
+		@include scale(5);
+		color: color(chrh);
+	}
+	
+	h2
+	{
+		@extend %font-title;
+		@include scale(4);
+		@include trailer;
+		color: color(chrac);
+	}
+	
+	p
+	{
+		@extend %ccw-article;
+		@extend %font-lead;
+		color: color(chrfg);
+		
+	}
+	
+}
+
+
+.solid
+{
+	background: color(dbg);
+	
+	> .ccc
+	{
+		display: table;
+	}
+	
+	.c
+	{
+		display: block;
+		padding: 2.5rem 0;
+		@extend %ai-rhythm;
+		
+		@include above(punk)
+		{
+			display: table-cell;
+		}
+		
+	}
+	
+	
+	&-thumbnail
+	{
+		width: 20%;
+		
+		background-size: cover;
+		background-position: center;
+	}
+	
+	&-headers
+	{
+		width: 35%;
+		vertical-align: middle;
+	}
+	
+	&-content
+	{
+		width: 40%;
+		border-right: 2rem solid transparent;
+		vertical-align: middle;
+	}
+	
+	h1
+	{
+		@extend %font-heading;
+		@include scale(4);
+		color: color(dh);
+		text-align: center;
+	}
+	
+	p
+	{
+		@extend %font-lead;
+		color: color(dfg);
+	}
+	
+}
+
+// Override background color
+.page-template-showcase-php #main
+{
+	background-color: #000;
+}

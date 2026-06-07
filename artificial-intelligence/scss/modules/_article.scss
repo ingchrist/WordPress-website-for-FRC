@@ -1,0 +1,453 @@
+
+
+// SELECTOR: ARTICLE
+// Provides advanced styling for all the typographic elements
+// supported by WordPress's impelmentation of TinyMCE.
+//
+%ai-article
+{
+	// Pull in regular article styles
+	@extend %ai-rhythm;
+	
+	p
+	{
+		@extend %cc-article;
+		@include vpadding-bottom;
+		
+		&:first-child
+		{
+			@include vpadding-top;
+		}
+	}
+	
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+	{
+		@extend %cc-article;
+		@include vpadding;
+		@extend %font-heading;
+	}
+	
+	h1
+	{
+		@include scale(3);
+	}
+	
+	h2
+	{
+		@include scale(2);
+	}
+	
+	h3
+	{
+		@include scale(1);
+	}
+	
+	strong
+	{
+		@extend %font-bold;
+	}
+	
+	em
+	{
+		@extend %font-italic;
+	}
+	
+	// don't do underlines, kids
+	span[style*="underline"]
+	{
+		text-decoration: none !important;
+		border-bottom: rem(1px) solid;
+	}
+	
+	ul,
+	ol
+	{
+		@extend %cc-article;
+		@include vpadding-bottom;
+		border-left: 2rem solid transparent;
+	}
+	
+	ul
+	{
+		list-style: circle outside;
+	}
+	
+	ol
+	{
+		list-style: decimal outside;
+	}
+	
+	blockquote
+	{
+		@extend %cc-article;
+		@extend %font-lead;
+		@include vpadding-bottom;
+		border-left: rem(2px) solid;
+	}
+	
+	a,
+	ins
+	{
+		@extend a%ai-rhythm;
+	}
+	
+	pre
+	{
+		@extend %ccw-article;
+		padding: 0 1rem;
+		@include vpadding-bottom;
+		@include trailer;
+		overflow-x: scroll;
+		
+		background: color(dbg);
+		color: color(dfg);
+		
+		@extend %font-mono;
+	}
+	
+	dl
+	{
+		@extend %cc-article;
+		
+		dt
+		{
+			@extend strong;
+		}
+		
+		dd
+		{
+			@include vpadding-bottom;
+		}
+		
+	}
+	
+	abbr,
+	acronym
+	{
+		border-bottom: dotted 1px color(lfg);
+	}
+	
+	big
+	{
+		font-size: scale(1);
+	}
+	
+	del,
+	strike
+	{
+		text-decoration: line-through;
+	}
+	
+	kbd,
+	code,
+	tt,
+	var
+	{
+		@extend %font-mono;
+	}
+	
+	sub
+	{
+		position: relative;
+		top: 0.3em;
+		font-size: 0.8em;
+	}
+	
+	sup
+	{
+		position: relative;
+		bottom: 0.5em;
+		font-size: 0.8em;
+	}
+	
+	address
+	{
+		@extend %cc-article;
+		@include scale(-1);
+	}
+	
+	table
+	{
+		@extend %ccw-article;
+		
+		tr
+		{
+			border-bottom: 1px solid;
+		}
+		
+		thead tr
+		{
+			border-bottom: 2px solid;
+		}
+		
+		th
+		{
+			@extend %font-bold;
+		}
+		
+		td,
+		th
+		{
+			text-align: left;
+			padding: 0 0.25rem;
+			@include vpadding;
+		}
+		
+	}
+	
+	.wp-caption
+	{
+		
+		&.aligncenter,
+		&.alignnone
+		{
+			@extend %cc-article;
+			@include wrap;
+		}
+		
+		@include below(punk)
+		{
+			&.alignleft,
+			&.alignright
+			{
+				margin: 0 auto;
+				@include wrap;
+			}
+		}
+		
+		@include above(punk)
+		{
+			@each $align, $opposite in left right, right left
+			{
+				&.align#{$align}
+				{
+					float: $align;
+					border-#{$opposite}: rem(2px) solid;
+					padding-#{$opposite}: 0.75rem;
+					margin-#{$opposite}: 0.75rem;
+				}
+			}
+		}
+		
+		&-text
+		{
+			@extend %font-lead;
+		}
+		
+	}
+	
+	.gallery
+	{
+		@extend %ccw-article;
+		
+		html.flexbox &
+		{
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			
+			@include above(punk)
+			{
+				flex-direction: row;
+			}
+		}
+		
+		&-item
+		{
+			text-align: center;
+			margin: 0.5rem auto;
+		}
+		
+		&-icon
+		{
+			margin: 0 auto;
+		}
+		
+		html.no-flexbox &
+		{
+			@extend %cf;
+		}
+		
+		@include above(punk)
+		{
+			
+			html.no-flexbox &-item
+			{
+				float: left;
+			}
+			
+			@for $i from 1 through 4
+			{
+				&-columns-#{$i} .gallery-item
+				{
+					width: 100% / $i;
+				}
+			}
+		}
+		
+	}
+	
+}
+
+// CONSTANT: DEFAULT ARTICLE COLORS
+// Default color slugs to use in article contexts.
+//
+$article-colors: (
+	p:  lfg,
+	h:  lh,
+	a:  la,
+	ac: lac,
+);
+
+// MODULE: ARTICLE
+// Provides basic color and typography styles.
+// Options:
+//   p                Color to apply to body copy
+//   h                Color to apply to headings
+//   a                Color to apply to anchors
+//   ac               Accent color
+//   adjust-first     The border-top-width of the first paragraph element
+//
+@mixin ai-article($sel: &, $opts...)
+{
+	$args: keywords($opts);
+	
+	$cc: cc-article !default;
+	
+	@if map-has-key($args, cc)
+	{
+		$cc: map-find($args, cc)
+	}
+	
+	$colors: ();
+	
+	@each $context, $color in $article-colors
+	{
+		@if map-has-key($args, color-#{$context})
+		{
+			$colors: map-merge(
+				$colors,
+				( $context: map-find($args, color-#{$context}) )
+			);
+		}
+		
+		@else
+		{
+			$colors: map-merge(
+				$colors,
+				( $context: $color )
+			);
+		}
+	}
+	
+	@extend %ai-article;
+	color: color(map-find($colors, p));
+	
+	a
+	{
+		color: color(map-find($colors, p));
+		border-color: color(map-find($colors, p));
+		
+		&:hover
+		{
+			color: color(map-find($colors, a));
+			border-color: color(map-find($colors, a));
+		}
+	}
+	
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	ul,
+	ol,
+	blockquote,
+	.wp-caption.aligncenter,
+	.wp-caption.alignnone
+	{
+		@extend %#{$cc};
+	}
+	
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+	{
+		color: color(map-find($colors, h));
+	}
+	
+	hr
+	{
+		color: color(map-find($colors, ac));
+	}
+	
+	blockquote,
+	.wp-caption,
+	.wp-caption-text
+	{
+		color: color(map-find($colors, ac));
+		color: color(map-find($colors, ac));
+	}
+	
+	span[style*="underline"]
+	{
+		color: color(map-find($colors, p));
+	}
+	
+	@if map-has-key($args, adjust-first)
+	{
+		p:first-of-type
+		{
+			border-top: map-find($args, adjust-first) solid transparent;
+		}
+	}
+	
+	address
+	{
+		color: color(map-find($colors, ac));
+	}
+	
+}
+
+// SELECTOR: NORMAL ARTICLE
+// Normal article context. Light background, dark foreground.
+//
+%ai-article-normal
+{
+	@include ai-article(".article", $adjust-first: 0.42rem);
+}
+
+// SELECTOR: DARK ARTICLE
+// Dark article context. Dark background, light foreground.
+//
+%ai-article-dark
+{
+	@include ai-article(".article",
+											$color-p: dfg,
+											$color-h: dh,
+											$color-a: da,
+											$color-ac: dac);
+}
+
+// SELECTOR: PHOTO BACKGROUND ARTICLE
+// Dark article context. Photo background, light foreground.
+//
+%ai-article-photo
+{
+	@include ai-article(".article",
+											$color-p: chrfg,
+											$color-h: chrh,
+											$color-a: da,
+											$color-ac: chrac);
+}

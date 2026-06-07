@@ -1,0 +1,7 @@
+
+// SELECTOR: FOOTER
+//
+#footer
+{
+	@include ai-footer(&, $col-sel: ".col");
+}

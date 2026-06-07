@@ -1,0 +1,4 @@
+#footer-forums
+{
+	@include ai-footer(&, $col-sel: ".col");
+}

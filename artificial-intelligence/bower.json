@@ -1,0 +1,30 @@
+{
+  "name": "artificial-intelligence",
+  "version": "1.2.4",
+  "authors": [
+    "Ryan Duchene <duchenerc@gmail.com>"
+  ],
+  "description": "The ultimate WordPress theme for any FRC team.",
+  "main": "functions.php",
+  "keywords": [
+    "wordpress",
+    "frc",
+    "artificial",
+    "intelligence"
+  ],
+  "private": true,
+  "license": "GPLv2",
+  "homepage": "http://github.com/duchenerc/artificial-intelligence",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gsap": "~1.14.2",
+    "slidesjs": "https://github.com/nathansearles/Slides.git#SlidesJS-3",
+    "Respond": "https://github.com/scottjehl/Respond.git#master"
+  }
+}

@@ -1,0 +1,121 @@
+
+// CONSTANT: BREAKS
+// A map of breakpoint values.
+//
+$breaks: ();
+
+// Building $breaks with ems
+@each $key, $val in $config-breaks
+{
+	$breaks: map-merge($breaks, ($key: em($val)));
+}
+
+// CONSTANT: BREAKS-KEYS
+// List of keys for breakpoints.
+//
+$breaks-keys: map-keys($breaks);
+
+// FUNCTION: BREAK
+// Returns the breakpoint value associated with the passed key.
+//
+@function break($break)
+{
+	@return map-find($breaks, $break);
+}
+
+// FUNCTION: BREAK-ABOVE
+// Returns the breakpoint value associated with the key above the passed key.
+//
+@function break-above($break)
+{
+	$pos: index($breaks-keys, $break) + 1;
+	
+	@if length($breaks-keys) >= $pos
+	{
+		@return break(nth($breaks-keys, $pos));
+	}
+	
+	@if length($breaks-keys) < $pos
+	{
+		@return break(last($breaks-keys));
+	}
+}
+
+// FUNCTION: BREAK-BELOW
+// Returns the breakpoint value associated with the key below the passed key.
+//
+@function break-below($break)
+{
+	$pos: index($breaks-keys, $break) - 1;
+	@if 1 <= $pos
+	{
+		@return break(nth($breaks-keys, $pos));
+	}
+	
+	@else
+	{
+		@return break(first($breaks-keys));
+	}
+}
+
+// MIXIN: ABOVE
+// Builds a media query targeted above the passed breakpoint.
+//
+@mixin above($break)
+{
+	@media (min-width: break($break))
+	{
+		@content;
+	}
+}
+
+// MIXIN: BELOW
+// Builds a media query targeted below the passed breakpoint.
+//
+@mixin below($break)
+{
+	@media (max-width: break($break) - em(1px))
+	{
+		@content;
+	}
+}
+
+// MIXIN: BETWEEN
+// Builds a media query targeted between the passed breakpoints.
+//
+@mixin between($lower, $upper: $lower)
+{
+	@media (min-width: break($lower)) and (max-width: break($upper) - em(1px))
+	{
+		@content;
+	}
+}
+
+// MIXIN: AROUND
+// Builds a media query targeted between the passed breakpoints.
+//
+@mixin around($lower, $upper: $lower)
+{
+	@media (max-width: break($lower) - em(1px)), (min-width: break($upper))
+	{
+		@content;
+	}
+}
+
+// MIXIN: ONLY
+// Builds a media query targeted only on the passed breakpoint.
+// Alias for between($break)
+//
+@mixin only($break)
+{
+	@include between($break) { @content };
+}
+
+// MIXIN: EXCEPT
+// Builds a media query targeted everywhere except the passed breakpoint.
+// Alias for around(break)
+//
+@mixin except($break)
+{
+	@include around($break) { @content };
+}

@@ -1,0 +1,24 @@
+
+// CONSTANT: TYPESETS
+// Locations where associated styles may be applied. Standardized.
+//
+$typesets: (
+	title,     // Appears on big page titles
+	heading,   // Appears on smaller headings
+	lead,      // Appears in lead paragraph text
+	body,      // The default styling
+	main,      // Applied to areas where there is a lot of text (articles, etc.)
+	bold,      // Applied to phrases in articles wrapped in strong tags
+	italic,    // Applied to phrases in articles wrapped in em tags
+	mono,      // Monospace styling
+);
+
+// Build typesets
+//
+@each $set in $typesets
+{
+	%font-#{$set}
+	{
+		@include map-build(map-find($fonts, $set));
+	}
+}

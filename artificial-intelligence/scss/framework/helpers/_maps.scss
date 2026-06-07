@@ -1,0 +1,73 @@
+// FUNCTION: MAP-FIND
+// A classic. Find an item in a multidimensional map with a set of keys.
+//  $map    The map to look in
+//  $keys   A list of keys to use
+//
+@function map-find($map, $keys...)
+{
+	
+	@if not cast($map, map)
+	{
+		@error "$map #{$map} is not a map. Keys are #{inspect($keys)}";
+	}
+	
+	// Begin search
+	//
+	@while length($keys) > 1
+	{
+		// Check if the map has the key we're looking for
+		//
+		@if map-has-key($map, nth($keys, 1))
+		{
+			// If so, get that key and shift the keys down.
+			//
+			$map: map-get($map, nth($keys, 1));
+			$keys: slice($keys, 2); // TODO Slice is slow, but compact. Change for hardcoded.
+		}
+		
+		@else
+		{
+			// If not, error out.
+			//
+			@error "$map #{inspect($map)} does not have key #{nth($keys, 1)}";
+			@return null;
+		}
+	}
+	
+	// Return
+	//
+	@return map-get($map, nth($keys, 1));
+	
+}
+
+// MIXIN: MAP-BUILD
+// Builds a block of CSS with the given map. Keys become properties, values values.
+//
+@mixin map-build($map)
+{
+	// Cast $map to map
+	//
+	@if not cast($map, map)
+	{
+		@error "$map #{$map} is not a map.";
+	}
+	
+	// Build
+	//
+	@each $property, $value in $map
+	{
+		@if type-of($value) == map
+		{
+			#{$property}
+			{
+				@include map-build($value);
+			}
+		}
+		
+		@else
+		{
+			#{$property}: $value;
+		}
+	}
+	
+}

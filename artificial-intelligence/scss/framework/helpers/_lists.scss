@@ -1,0 +1,73 @@
+// FUNCTION: FIRST
+// Returns first item in a list.
+//
+@function first($list)
+{
+	
+	// Return
+	//
+	@return nth($list, 1);
+	
+}
+
+// FUNCTION: LAST
+// Returns last item in a list.
+//
+@function last($list)
+{
+	
+	// Return
+	//
+	@return nth($list, length($list));
+	
+}
+
+// FUNCTION: SLICE
+// Returns a slice of a list.
+//  $list    The list to slice
+//  $start   The index to start at
+//  $stop    The index to stop at
+//  $finish  to vs through
+//
+@function slice($list, $start, $stop: 0, $finish: through)
+{
+	
+	// Wrap indexes around
+	//
+	@if $start < 1
+	{
+		$start: length($list) + $start; // $start is either 0 or negative
+	}
+	
+	@if $stop < 1
+	{
+		$stop: length($list) + $stop; // $stop is either 0 or negative
+	}
+	
+	// Initialize return list
+	//
+	$retval: ();
+	
+	// Build return value
+	//
+	@if $finish == through
+	{
+		@for $i from $start through $stop
+		{
+			$retval: append($retval, nth($list, $i));
+		}
+	}
+	
+	@elseif $finish == to
+	{
+		@for $i from $start to $stop
+		{
+			$retval: append($retval, nth($list, $i));
+		}
+	}
+	
+	// Return
+	//
+	@return $retval;
+	
+}

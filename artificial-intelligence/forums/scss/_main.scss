@@ -1,0 +1,192 @@
+
+
+#crumbs-forums
+{
+	@extend %ccw-article;
+	padding: 0.45rem 0.25rem;
+	color: color(lfg);
+	@include scale(-1);
+	
+	.crumb
+	{
+		display: inline-block;
+		
+		a,
+		span
+		{
+			padding: 0.25rem;
+		}
+		
+		&:after
+		{
+			content: " / ";
+		}
+		
+		&:last-of-type:after
+		{
+			content: "";
+		}
+	}
+	
+	a
+	{
+		color: color(lh);
+		transition-property: color, background;
+		transition-duration: 0.1s, 0.1s;
+		transition-timing-function: ease, ease;
+		
+		&:hover
+		{
+			background: color(chrbg);
+			color: color(dfg);
+		}
+	}
+	
+}
+
+#main-forums
+{
+	min-height: 90vh;
+	background: color(lbg);
+	@extend %ai-rhythm;
+	
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+	{
+		color: color(lh);
+	}
+	
+}
+
+.forums-subheader
+{
+	@include scale(2);
+	@include vpadding-bottom;
+	text-align: center;
+	@extend %font-heading;
+}
+
+#forums-header
+{
+	@extend %ccw-article;
+	
+	h1
+	{
+		@extend %ccw-article;
+		@extend %font-title;
+		@include scale(5);
+		@include vpadding;
+		text-align: center;
+	}
+	
+	p
+	{
+		@include vpadding-bottom;
+	}
+	
+}
+
+#article
+{
+	@include ai-article(&, $cc: ccw-article);
+}
+
+.no-posts
+{
+	@include scale(1);
+	@extend %font-lead;
+	text-align: center;
+	color: color(lac);
+}
+
+.forum,
+.forum_thread
+{
+	@extend %ccw-article;
+	transition: background 0.4s ease;
+	
+	> .c
+	{
+		display: block;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		@include vpadding;
+	}
+	
+	a
+	{
+		color: color(lfg);
+	}
+	
+	&-name
+	{
+		@extend %font-heading;
+		@include scale(1);
+	}
+	
+	&-meta
+	{
+		@include scale(-1);
+		color: color(lh);
+	}
+	
+	&-excerpt
+	{
+		@include vpadding-top;
+		color: color(la);
+	}
+	
+	&:hover
+	{
+		background: darken(color(lbg), 10%);
+	}
+	
+}
+
+
+.threads-pagination,
+.comments-pagination
+{
+	@extend %cc-article;
+	@include vpadding;
+	@include box(center, $cc:"> .c", $items: "&-li");
+	
+	&-empty,
+	.current,
+	a,
+	{
+		display: block;
+		padding: 0.5rem 1rem;
+		color: color(lfg);
+	}
+	
+	.current,
+	{
+		background: darken(color(lbg), 10%);
+	}
+	
+	&-current
+	{
+		@extend .current;
+	}
+	
+	&-empty
+	{
+		color: transparent;
+	}
+	
+	a
+	{
+		transition: background 0.4s ease;
+		
+		&:hover
+		{
+			background: darken(color(lbg), 10%);
+		}
+	}
+	
+}

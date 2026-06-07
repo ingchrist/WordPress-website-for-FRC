@@ -1,0 +1,220 @@
+
+// IMPORT FONTS
+//
+@import "genericons/genericons";
+
+// CONSTANT: GENERICONS
+// A map of all Genericons, slugs to codes, in alphabetical order.
+// Commenting out the ones you don't need will greatly decrease
+// the size of the generated CSS file.
+//
+$genericons: (
+	404: "\f423",
+	activity: "\f508",
+	anchor: "\f509",
+	aside: "\f101",
+	attachment: "\f416",
+	audio: "\f109",
+	bold: "\f471",
+	book: "\f444",
+	bug: "\f50a",
+	cart: "\f447",
+	category: "\f301",
+	chat: "\f108",
+	checkmark: "\f418",
+	close: "\f405",
+	close-alt: "\f406",
+	cloud: "\f426",
+	cloud-download: "\f440",
+	cloud-upload: "\f441",
+	code: "\f462",
+	codepen: "\f216",
+	cog: "\f445",
+	collapse: "\f432",
+	comment: "\f300",
+	day: "\f305",
+	digg: "\f221",
+	document: "\f443",
+	dot: "\f428",
+	downarrow: "\f502",
+	download: "\f50b",
+	draggable: "\f436",
+	dribbble: "\f201",
+	dropbox: "\f225",
+	dropdown: "\f433",
+	dropdown-left: "\f434",
+	edit: "\f411",
+	ellipsis: "\f476",
+	expand: "\f431",
+	external: "\f442",
+	facebook: "\f203",
+	facebook-alt: "\f204",
+	fastforward: "\f458",
+	feed: "\f413",
+	flag: "\f468",
+	flickr: "\f211",
+	foursquare: "\f226",
+	fullscreen: "\f474",
+	gallery: "\f103",
+	github: "\f200",
+	googleplus: "\f206",
+	googleplus-alt: "\f218",
+	handset: "\f50c",
+	heart: "\f461",
+	help: "\f457",
+	hide: "\f404",
+	hierarchy: "\f505",
+	home: "\f409",
+	image: "\f102",
+	info: "\f455",
+	instagram: "\f215",
+	italic: "\f472",
+	key: "\f427",
+	leftarrow: "\f503",
+	link: "\f107",
+	linkedin: "\f207",
+	linkedin-alt: "\f208",
+	location: "\f417",
+	lock: "\f470",
+	mail: "\f410",
+	maximize: "\f422",
+	menu: "\f419",
+	microphone: "\f50d",
+	minimize: "\f421",
+	minus: "\f50e",
+	month: "\f307",
+	move: "\f50f",
+	next: "\f429",
+	notice: "\f456",
+	paintbrush: "\f506",
+	path: "\f219",
+	pause: "\f448",
+	phone: "\f437",
+	picture: "\f473",
+	pinned: "\f308",
+	pinterest: "\f209",
+	pinterest-alt: "\f210",
+	play: "\f452",
+	plugin: "\f439",
+	plus: "\f510",
+	pocket: "\f224",
+	polldaddy: "\f217",
+	portfolio: "\f460",
+	previous: "\f430",
+	print: "\f469",
+	quote: "\f106",
+	rating-empty: "\f511",
+	rating-full: "\f512",
+	rating-half: "\f513",
+	reddit: "\f222",
+	refresh: "\f420",
+	reply: "\f412",
+	reply-alt: "\f466",
+	reply-single: "\f467",
+	rewind: "\f459",
+	rightarrow: "\f501",
+	search: "\f400",
+	send-to-phone: "\f438",
+	send-to-tablet: "\f454",
+	share: "\f415",
+	show: "\f403",
+	shuffle: "\f514",
+	sitemap: "\f507",
+	skip-ahead: "\f451",
+	skip-back: "\f450",
+	skype: "\f220",
+	spam: "\f424",
+	spotify: "\f515",
+	standard: "\f100",
+	star: "\f408",
+	status: "\f105",
+	stop: "\f449",
+	stumbleupon: "\f223",
+	subscribe: "\f463",
+	subscribed: "\f465",
+	summary: "\f425",
+	tablet: "\f453",
+	tag: "\f302",
+	time: "\f303",
+	top: "\f435",
+	trash: "\f407",
+	tumblr: "\f214",
+	twitch: "\f516",
+	twitter: "\f202",
+	unapprove: "\f446",
+	unsubscribe: "\f464",
+	unzoom: "\f401",
+	uparrow: "\f500",
+	user: "\f304",
+	video: "\f104",
+	videocamera: "\f517",
+	vimeo: "\f212",
+	warning: "\f414",
+	website: "\f475",
+	week: "\f306",
+	wordpress: "\f205",
+	xpost: "\f504",
+	youtube: "\f213",
+	zoom: "\f402",
+);
+
+// SELECTOR: BASE GENERICON
+// This is the exact selector that came with the install,
+// except the fixed font size has been removed.
+//
+%genericon {
+	// font-size: 16px;
+	vertical-align: top;
+	text-align: center;
+	-moz-transition: color .1s ease-in 0;
+	-webkit-transition: color .1s ease-in 0;
+	display: inline-block;
+	font-family: "Genericons";
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	line-height: 1;
+	text-decoration: inherit;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	speak: none;
+	
+	@each $slug, $icon in $genericons
+	{
+		// You may @extend %genericon-SLUG to get your icon.
+		//
+		&-#{$slug}:before
+		{
+			@extend %genericon;
+			content: $icon;
+		}
+	}
+}
+
+// GENERATE DATA-ICON SELECTORS
+// A list of selectors to generate for data-icon.
+// Generate selectors that use the data-icon attribute to inject the icon.
+//
+$genericons-data-icon: (
+	category,
+	cog,
+	edit,
+	feed,
+	home,
+	menu,
+	next,
+	previous,
+	reply,
+	search,
+	tag,
+	user,
+);
+
+@each $slug in $genericons-data-icon
+{
+	[data-icon="#{$slug}"]
+	{
+		@extend %genericon-#{$slug};
+	}
+}

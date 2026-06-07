@@ -1,0 +1,109 @@
+
+#main
+{
+	@include ai-forms;
+}
+
+// SELECTOR: STANDARD
+// Primary page, with a full-screen thumbnail at the top.
+//
+.single-format-standard #article,
+.page-template-default #article
+{
+	background-color: color(lbg);
+	
+	// Actual article
+	.article.c
+	{
+		@extend %ai-article-normal;
+	}
+}
+
+// SELECTOR: PHOTO BACKGROUND
+// Uses post thumbnail as background image.
+//
+.page-template-photobg-page-php,
+.page-template-searchpage-php,
+.single-format-aside,
+.single-format-status,
+.single-format-quote
+{
+	#article
+	{
+		min-height: 100vh;
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		
+		> .c
+		{
+			min-height: 100vh;
+			background-color: color(chrbg);
+		}
+	}
+	
+	// Actual article
+	.article.c
+	{
+		padding: 10rem 0;
+		@include above(punk)
+		{
+			padding: 7rem 0;
+		}
+		
+		@extend %ai-article-photo;
+		
+	}
+}
+
+// SELECTOR: DARK BACKGROUND
+// Page with dark background.
+//
+.page-template-darkbg-page-php,
+.single-format-image,
+.single-format-video,
+.single-format-link,
+.error404
+{
+	#article
+	{
+		min-height: 100vh;
+		
+		> .c
+		{
+			min-height: 100vh;
+			background-color: color(dbg);
+		}
+	}
+	
+	// Actual article
+	.article.c
+	{
+		padding: 10rem 0;
+		@include above(punk)
+		{
+			padding: 7rem 0;
+		}
+		
+		@extend %ai-article-dark;
+		
+	}
+	
+}
+
+// First element on video posts is likely to be video,
+// so give it a video wrapper.
+//
+.single-format-video .article.c p:first-of-type
+{
+	@extend .video.w;
+}
+
+// On search pages, style search form.
+//
+.body-search-input
+{
+	display: block;
+	@extend #nav-search-input;
+	@extend %cc-article;
+}

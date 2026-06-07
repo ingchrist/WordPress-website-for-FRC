@@ -1,0 +1,73 @@
+
+// DEBUG RHYTHM
+// If debugging turned on, import a background image to help debug rhythm.
+//
+@if $config-rhythm-debug
+{
+	%ai-rhythm
+	{
+		@include above(punk)
+		{
+			background-image: url(http://basehold.it/i/#{$config-line-height / 1px}) !important;
+		}
+		
+		@include below(punk)
+		{
+			background-image: url(http://basehold.it/i/#{$config-line-height-mobile / 1px}) !important;
+		}
+	}
+}
+
+// FUNCTION: SCALE
+// Find the font size at a specific exponent up the provided scale.
+//
+@function scale($exp: 0, $unit: "rem")
+{
+	@if $unit == "rem"
+	{
+		@return rem($config-font-size * raise($config-multiplier, $exp));
+	}
+	@elseif $unit == "px"
+	{
+		@return $config-font-size * raise($config-multiplier, $exp);
+	}
+}
+
+// MIXIN: SCALE
+// Applies the scale() function with the passed exponent,
+// then adjusts the line-height to maintain vertical rhythm.
+//
+@mixin scale($exp: 0)
+{
+	font-size: scale($exp);
+	$size: scale($exp, "px");
+	line-height: $config-line-height * ceil($size / $config-line-height) / $size;
+}
+
+// Set root font-size so rems work
+:root
+{
+	@include above(punk)
+	{
+		font-size: em($config-font-size, 16px);
+	}
+	
+	@include below(punk)
+	{
+		font-size: em($config-font-size-mobile, 16px);
+	}
+}
+
+// Add line-heights to articles
+%ai-rhythm
+{
+	@include above(punk)
+	{
+		line-height: $config-line-height / $config-font-size;
+	}
+	
+	@include below(punk)
+	{
+		line-height: $config-line-height-mobile / $config-font-size-mobile;
+	}
+}

@@ -1,0 +1,19 @@
+// FUNCTION: CAST
+// Returns whether a passed element is a type that matches a passed type.
+//  $var    A variable
+//  $types  A list of types $var should be
+//
+@function cast($var, $types...)
+{
+	// If the types casted to contain list, allow arglists and maps as well.
+	//
+	@if index($types, list)
+	{
+		$types: append($types, arglist);
+		$types: append($types, map);
+	}
+	
+	// Return if $var is one of $types
+	//
+	@return index($types, type-of($var));
+}
