@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FRC Team WordPress Theme – Artificial Intelligence</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #e8c23a;
+      --accent2: #f97316;
+      --bg: #0a0a0a;
+      --bg2: #111;
+      --bg3: #161616;
+      --border: #222;
+      --text: #f0f0f0;
+      --muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo .team-num {
+      background: var(--accent);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.85) 60%, var(--bg) 100%),
+        url('../images/robot.jpg') center/cover no-repeat;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,194,58,0.12);
+      border: 1px solid rgba(232,194,58,0.35);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 22px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: #bbb;
+      max-width: 560px;
+      margin: 0 auto 36px;
+    }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 13px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000 !important;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text) !important;
+    }
+    .btn-outline:hover { border-color: var(--accent); }
+
+    /* ── SLIDESHOW STRIP ── */
+    .slides-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 260px;
+    }
+    .slide-thumb {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .slide-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+      filter: brightness(0.55);
+    }
+    .slide-thumb:hover img { transform: scale(1.06); filter: brightness(0.75); }
+    .slide-thumb .label {
+      position: absolute;
+      bottom: 18px; left: 20px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .slide-thumb .label small {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      margin-top: 2px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    h2.section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 540px; margin-bottom: 50px; }
+
+    /* ── FEATURES ── */
+    .features-section { background: var(--bg2); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--accent); }
+    .feature-card .icon {
+      width: 46px; height: 46px;
+      background: rgba(232,194,58,0.1);
+      border: 1px solid rgba(232,194,58,0.25);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+    }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── PAGES ── */
+    .pages-section { background: var(--bg); }
+    .pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .page-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+    .page-card .icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .page-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .page-card p { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── STACK ── */
+    .stack-section { background: var(--bg2); text-align: center; }
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 32px; }
+    .chip {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: #ccc;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 8px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1200 50%, #0f0f0f 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-section h2 { margin-bottom: 14px; }
+    .cta-section p { color: var(--muted); margin-bottom: 32px; font-size: 1.05rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 28px 2rem;
+      text-align: center;
+      color: #444;
+      font-size: 0.82rem;
+    }
+    footer a { color: #555; text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .slides-strip { grid-template-columns: 1fr; height: auto; }
+      .slide-thumb { height: 160px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <span class="team-num">FRC</span>
+      Artificial Intelligence Theme
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pages">Pages</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="https://github.com/ingchrist/WordPress-website-for-FRC" target="_blank">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">⚙️ &nbsp; For FIRST Robotics Competition Teams</div>
+      <h1>The Ultimate WordPress Theme<br/>for <span>FRC Teams</span></h1>
+      <p>A dark, modern, feature-rich WordPress theme built specifically for FIRST Robotics Competition teams. Forums, showcases, streams, and more — all ready to go.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/ingchrist/WordPress-website-for-FRC" class="btn btn-primary" target="_blank">⭐ &nbsp; Get the Theme</a>
+        <a href="#features" class="btn btn-outline">Explore Features</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image strip -->
+  <div class="slides-strip">
+    <div class="slide-thumb">
+      <img src="../images/welding.jpg" alt="Welding" />
+      <div class="label">Forged in Sparks<small>Engineering excellence</small></div>
+    </div>
+    <div class="slide-thumb">
+      <img src="../images/robot2.jpg" alt="Robot" />
+      <div class="label">Meet the Robot<small>Built to compete</small></div>
+    </div>
+    <div class="slide-thumb">
+      <img src="../images/gearbox.jpg" alt="Gearbox" />
+      <div class="label">Precision Parts<small>Machined to win</small></div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-label">What's Included</div>
+      <h2 class="section-title">Everything Your FRC Team Needs</h2>
+      <p class="section-sub">Built from the ground up for robotics teams — not a generic theme with a skin slapped on top.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">💬</div>
+          <h3>Team Forums</h3>
+          <p>A full custom forum system for team communication — threads, replies, categories and tags all built in.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🤖</div>
+          <h3>Robot Showcase</h3>
+          <p>A dedicated showcase page to highlight your robot with full-bleed photo backgrounds and sleek layouts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📺</div>
+          <h3>Streams Page</h3>
+          <p>Dedicated streams template — perfect for embedding Twitch or YouTube live feeds during competition season.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🎨</div>
+          <h3>Multiple Skins</h3>
+          <p>Built-in theme skins so different subteams or seasons can each have a unique look without touching code.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🖼️</div>
+          <h3>Hero Slideshow</h3>
+          <p>Full-screen image slider on the front page — showcase your robot photos, events, and team highlights.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📱</div>
+          <h3>Fully Responsive</h3>
+          <p>Mobile-first responsive design — looks great on phones, tablets, and laptops at competition and in the shop.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔧</div>
+          <h3>Advanced Custom Fields</h3>
+          <p>Deep ACF integration for easy team data management — team number, robot specs, member profiles, and more.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🌑</div>
+          <h3>Dark by Default</h3>
+          <p>Sleek dark theme that matches the intensity of FRC — no need to hunt for a dark mode plugin.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">✏️</div>
+          <h3>Custom Editor Styles</h3>
+          <p>The WordPress editor matches your front-end theme so what you write looks exactly like what you publish.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Templates -->
+  <section class="pages-section" id="pages">
+    <div class="container">
+      <div class="section-label">Page Templates</div>
+      <h2 class="section-title">Every Page Your Team Needs</h2>
+      <p class="section-sub">Purpose-built templates — not generic pages you have to awkwardly repurpose.</p>
+      <div class="pages-grid">
+        <div class="page-card">
+          <div class="icon">🏠</div>
+          <h4>Front Page</h4>
+          <p>Hero slideshow with robot photos</p>
+        </div>
+        <div class="page-card">
+          <div class="icon">📰</div>
+          <h4>Blog / Home</h4>
+          <p>Team news and announcements</p>
+        </div>
+        <div class="page-card">
+          <div class="icon">💬</div>
+          <h4>Forums</h4>
+          <p>Team discussion boards</p>
+        </div>
+        <div class="page-card">
+          <div class="icon">🤖</div>
+          <h4>Showcase</h4>
+          <p>Robot reveal and gallery</p>
+        </div>
+        <div class="page-card">
+          <div class="icon">📺</div>
+          <h4>Streams</h4>
+          <p>Live competition feeds</p>
+        </div>
+        <div class="page-card">
+          <div class="icon">📄</div>
+          <h4>Dark BG Page</h4>
+          <p>Full dark background layout</p>
+        </div>
+        <div class="page-card">
+          <div class="icon">🖼️</div>
+          <h4>Photo BG Page</h4>
+          <p>Full photo background layout</p>
+        </div>
+        <div class="page-card">
+          <div class="icon">🔍</div>
+          <h4>Search</h4>
+          <p>Site-wide search results</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="stack-section" id="stack">
+    <div class="container">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Built With Solid Tools</h2>
+      <div class="stack-chips">
+        <span class="chip">WordPress</span>
+        <span class="chip">PHP 7+</span>
+        <span class="chip">SCSS / Sass</span>
+        <span class="chip">CoffeeScript</span>
+        <span class="chip">Gulp 3</span>
+        <span class="chip">Bootstrap</span>
+        <span class="chip">jQuery</span>
+        <span class="chip">GSAP / TweenMax</span>
+        <span class="chip">SlidesJS</span>
+        <span class="chip">Modernizr</span>
+        <span class="chip">Advanced Custom Fields</span>
+        <span class="chip">GPL v2 License</span>
+        <span class="chip">Genericons</span>
+        <span class="chip">Vagrant Dev Env</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="section-label">Get Started</div>
+      <h2 class="section-title">Ready to Power Your FRC Team's Site?</h2>
+      <p>Clone the repo, install in WordPress, and start representing your team online.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/ingchrist/WordPress-website-for-FRC" class="btn btn-primary" target="_blank">⭐ &nbsp; Clone on GitHub</a>
+        <a href="https://wordpress.org/themes/" class="btn btn-outline" target="_blank">WordPress Themes Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      © 2024 Artificial Intelligence WordPress Theme &nbsp;·&nbsp;
+      Built for <abbr title="For Inspiration and Recognition of Science and Technology">FIRST</abbr> Robotics Competition Teams &nbsp;·&nbsp;
+      Deployed on <a href="https://vercel.com" target="_blank">Vercel</a> &nbsp;·&nbsp;
+      <a href="https://github.com/ingchrist/WordPress-website-for-FRC" target="_blank">GitHub</a>
+    </div>
+  </footer>
+
+</body>
+</html>
